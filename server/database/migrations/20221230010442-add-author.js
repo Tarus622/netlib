@@ -5,11 +5,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.addColumn('genres', 'createdAt', {
-          type: Sequelize.DataTypes.DATE
-        }, { transaction: t }),
-        queryInterface.addColumn('genres', 'updatedAt', {
-          type: Sequelize.DataTypes.DATE,
+        queryInterface.addColumn('books', 'author', {
+          type: Sequelize.DataTypes.STRING,
+          allowNull: false
         }, { transaction: t })
       ]);
     });
@@ -18,8 +16,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.removeColumn('genres', 'createdAt', { transaction: t }),
-        queryInterface.removeColumn('genres', 'updatedAt', { transaction: t })
+        queryInterface.removeColumn('books', 'author', { transaction: t })
       ]);
     });
   }

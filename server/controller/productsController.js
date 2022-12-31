@@ -30,7 +30,7 @@ controller.createNewGenreForm = async (req, res) => {
 
 // Create a new book in the database
 controller.createNewBookForm = async (req, res) => {    
-    const { title, genre } = req.body;
+    const { title, author, genre } = req.body;
 
     await Genre.findAll({
         where: {
@@ -43,8 +43,9 @@ controller.createNewBookForm = async (req, res) => {
                 const genre_id = genreFinded[0].id;  
                 const book = Book.create({
                     title,
+                    author,
                     genre,
-                    genre_id            
+                    genre_id      
                 })
                 res.json(book);   
     }})
