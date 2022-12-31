@@ -1,0 +1,36 @@
+@media screen and (max-width: 480px) {
+
+    form {
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        width: 20%;
+    }
+
+    input {
+        width: 50%;
+    }
+    
+    button {
+        margin-top: 5%;
+        background-color: darkgoldenrod;
+        font-size: large;
+        border-radius: 5%;
+        padding: 10px;
+    }
+
+    .inputContainer {
+        margin-top: 5%;
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        align-items: center;
+    }
+
+}
