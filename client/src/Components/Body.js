@@ -18,7 +18,6 @@ function Body (props) {
         <div className="body">
             <Header/>
             <Main/>
-            <p>{!data ? "Loading..." : data}</p>
         </div>
     )
 }

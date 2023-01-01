@@ -6,7 +6,6 @@ import Header from "./Header";
 function InsertBook (props) {
 
 
-
     return (
         <div className="insertBook">
             <Header/>
@@ -20,6 +19,11 @@ function InsertBook (props) {
                 <div className="inputContainer">
                     <label htmlFor="genre">Gênero:</label>
                     <input type= "text" name="genre" id="genre"></input>
+                </div>
+
+                <div className="inputContainer">
+                    <label htmlFor="rating">Rating:</label>
+                    <input type= "number" name="rating" id="rating" min="1" max="5"></input>
                 </div>
 
                 <div className="inputContainer">

@@ -52,4 +52,14 @@ controller.createNewBookForm = async (req, res) => {
     .catch(error => res.send(console.error('Gênero não encontrado')))
 }
 
+// Edit book in the database
+controller.editBook = async (req, res) => {
+    const { id } = req.params;
+
+    await Book.findByPk(id)
+    .then(book => {
+        
+    })
+}
+
 module.exports = controller;
