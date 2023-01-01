@@ -1,5 +1,4 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import axios from 'axios';
 import api from './services/api';
 import './index.css';
 import Body from './Components/Body';
