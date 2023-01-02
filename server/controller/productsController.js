@@ -10,11 +10,8 @@ const controller = {};
 
 // Get the genres of the database
 controller.getGenres = async (req, res) => {
-    const genre = await Genre.findAll({
-        where: {
-            name: 'Terror'
-    }});
-    return res.json(genre);
+    const genres = await Genre.findAll();
+    return res.json(genres);
 }
 
 // Create a new genre in the database
