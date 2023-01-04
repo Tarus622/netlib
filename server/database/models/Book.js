@@ -16,7 +16,7 @@ const Book = sequelize.define('Book', {
     genre: {
         type: dataTypes.STRING
     },
-    genre_id: {
+    genreId: {
         type: dataTypes.INTEGER,
         allowNull: false,
         references: { model: 'genres', key: 'id' }
@@ -26,7 +26,8 @@ const Book = sequelize.define('Book', {
         allowNull: true
     },
     image: {
-        type: dataTypes.STRING
+        type: dataTypes.STRING,
+        allowNull: true
     },
     createdAt: {
         type: dataTypes.DATE,
@@ -40,10 +41,12 @@ const Book = sequelize.define('Book', {
 }, {
     tableName: 'books'
 })
-
+ 
 Book.associate = function(models) {
     Book.belongsTo(models.Genre, {
-        foreignKey: 'genre_id,',
+        foreignKey: {
+            name: 'genreId'
+        },
         as: 'genres'
     })
 }

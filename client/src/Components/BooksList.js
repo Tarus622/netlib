@@ -10,30 +10,25 @@ function BookList(props) {
     const [backEndData, setBackEndData] = useState([{}]);
 
     useEffect(() => {        
-        axios.get('/products/get-genres')
-        .then(data => setBackEndData(data.data)
-        )
+        axios.get('/products/get-books')
+        .then(data => setBackEndData(data.data))        
     }, [])
 
     return (
         <div className="bookList">
             <Header/>
             <section className="containerBooks">
-                <section>
+            {backEndData.map(book => <section key={backEndData.length + book.id}>
                     <div>
-                        <a href=" /produtos/produto/<%= result.id %> "></a>
-                        <img src= {mao} alt=''></img>
+                        <a href={"#" + book.id}></a>
+                        <img src= {book.image} alt=''></img>
                     </div>
-                    <h3> produto.nome  </h3>
+                    <h3> {book.title}  </h3>
                     <p>  </p>
                     <button>Adicionar ao Carrinho</button>
 
-                </section>
+                </section>)}
             </section>
-            
-            <h2>Lista de gêneros de livros:</h2>
-            {console.log(backEndData)}
-            {backEndData.map(genre => <h4 key={genre.id}>{genre.name}</h4>)}
             
         </div>
     )

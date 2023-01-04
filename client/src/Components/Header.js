@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import './stylesheets/header.css'
 import logo from '../Public/Images/logo.png'
@@ -14,6 +15,15 @@ function Header (props) {
     const searchDiv = useRef();
     const carDiv = useRef();
     const accountDiv = useRef();
+
+
+    const [backEndData, setBackEndData] = useState([{}]);
+
+    useEffect(() => {        
+        axios.get('/products/get-genres')
+        .then(data => setBackEndData(data.data)
+        )
+    }, [])
 
     function showGenres () {
 
@@ -96,7 +106,7 @@ function Header (props) {
 
     return (
         <div className="headerDiv">
-            <header>
+            <header> 
                 <div className="logo">
                     <img src={logo} alt='logo' className="logoImage"></img>
                 </div>
@@ -129,10 +139,7 @@ function Header (props) {
             </header>            
             <div className='genresContainerHidden' ref={genresContainer}>
                 <ul className="bookGenres" ref={bookGenres}>
-                    <li><a href="#autoajuda" className="bookGenre">Autoajuda</a></li>
-                    <li><a href="#biografias" className="bookGenre">Biografias</a></li>
-                    <li><a href="#ficcao" className="bookGenre">Ficção</a></li>
-                    <li><a href="#romance" className="bookGenre">Romance</a></li>
+                    {backEndData.map(genre => <li key={backEndData.length + genre.id}><a key={genre.id} href={"#"+genre.name} className="bookGenre">{genre.name}</a></li>)}
                 </ul>
 
                 <div className="searchDiv" ref={searchDiv}>
