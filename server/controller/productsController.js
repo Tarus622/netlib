@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../database/models')
 const sequelize = db.sequelize;
+const upload = require('multer')();
 const {
     Op,
     where
@@ -84,15 +85,19 @@ controller.createNewBookForm = async (req, res) => {
         genre,
         rating
     } = req.body;
+    const image = req.file;
+    console.log(title)
+    console.log(image)
 
     /* Recovery all books */
     const books = await Book.findAll();
 
     /* Verify if the book exist */
-    const bookExist = books.find(book => {book.title === title && book.author === author})
+    const bookExist = books.find(book => book.title === title)
+    const authorExist = books.find(book => book.author === author)
 
     // If the book isn't exist, execute the next function
-    if (bookExist === undefined) {
+    if (bookExist === undefined && authorExist === undefined) {
         await Genre.findAll({
                 where: {
                     name: {
@@ -110,7 +115,8 @@ controller.createNewBookForm = async (req, res) => {
                         author,
                         genre,
                         genreId,
-                        rating
+                        rating,
+                        image
                     })
                     res.json(book);
                 }

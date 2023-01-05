@@ -21,7 +21,7 @@ function BookList(props) {
             {backEndData.map(book => <section key={backEndData.length + book.id}>
                     <div>
                         <a href={"#" + book.id}></a>
-                        <img src= {book.image} alt=''></img>
+                        <img src= {URL.createObjectURL(book.image)} alt=''></img>
                     </div>
                     <h3> {book.title}  </h3>
                     <p>  </p>

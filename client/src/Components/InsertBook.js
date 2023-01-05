@@ -1,10 +1,14 @@
 import React from "react";
+import axios from "axios";
 import './stylesheets/insertBook.css'
 import { useState, useEffect, useRef } from "react";
 import Header from "./Header";
 
 function InsertBook (props) {
 
+    const filesElement = useRef(null);
+
+    // Create field properties
     const [fields, setFields] = useState({
         title: '',
         author: '',
@@ -13,15 +17,30 @@ function InsertBook (props) {
         image: ''
     });
 
+    // Create function that change the field name through the input value 
     function handleImputChange(event) {
+        if (event.target.name === 'image') {
+            fields[event.target.name] = event.target.files[0];
+        } else {
         fields[event.target.name] = event.target.value;
         setFields(fields);
-        
+        }        
     }
 
+    // Create handle function that send post request to the server
     function handleFormSubmit(event) {
         event.preventDefault();
-        console.log(fields);
+        send();
+    }
+
+    function send() {
+        const formData = {};
+        Object.assign(formData, {fields})
+        axios.post('/products/create-book', fields, {
+            headers: {
+                'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
+            }
+        })
     }
 
     return (
@@ -51,7 +70,7 @@ function InsertBook (props) {
 
                 <div className="inputContainer">
                     <label htmlFor="image">Imagem:</label>
-                    <input type= "text" name="image" id="image" onChange={handleImputChange}></input>
+                    <input type="file" name="image" id="image" onChange={handleImputChange}></input>
                 </div>
 
                 <button type="submit" value='send'>Adicionar Livro</button>

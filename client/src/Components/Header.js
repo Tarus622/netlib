@@ -139,7 +139,7 @@ function Header (props) {
             </header>            
             <div className='genresContainerHidden' ref={genresContainer}>
                 <ul className="bookGenres" ref={bookGenres}>
-                    {backEndData.map(genre => <li key={backEndData.length + genre.id}><a key={genre.id} href={"#"+genre.name} className="bookGenre">{genre.name}</a></li>)}
+                    {backEndData.map(genre => <li key={backEndData.length + genre.id}><a href={"#"+genre.name} className="bookGenre">{genre.name}</a></li>)}
                 </ul>
 
                 <div className="searchDiv" ref={searchDiv}>

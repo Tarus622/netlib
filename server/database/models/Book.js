@@ -26,7 +26,7 @@ const Book = sequelize.define('Book', {
         allowNull: true
     },
     image: {
-        type: dataTypes.STRING,
+        type: dataTypes.BLOB,
         allowNull: true
     },
     createdAt: {
